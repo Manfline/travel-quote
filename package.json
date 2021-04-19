@@ -1,0 +1,113 @@
+{
+  "name": "cotacao-viagem",
+  "version": "1.0.0",
+  "title": "Cotação de Viagem",
+  "description": "Api para cotação de viagem",
+  "main": "./index.js",
+  "scripts": {
+    "test": "jest --runInBand --detectOpenHandles --forceExit --verbose",
+    "start": "node ./index.js",
+    "dev": "nodemon",
+    "cover": "jest --runInBand --detectOpenHandles --verbose --coverage",
+    "format": "npm run prettier -- --write",
+    "lint": "npx eslint src",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "npx prettier \"./**/*.{js,jsx,json}\"",
+    "validate": "npm run prettier -- --list-different && npm run lint"
+  },
+  "author": "Manfline Aquino",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "^4.17.1",
+    "http-status-codes": "^1.4.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-jest": "^23.8.1",
+    "husky": "^3.0.5",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.4.0",
+    "nodemon": "^1.19.4",
+    "prettier": "^1.18.2",
+    "supertest": "^4.0.2"
+  },
+  "nodemonConfig": {
+    "exec": "npm run lint -- --fix && node  -r dotenv/config ./index.js",
+    "events": {
+      "restart": "clear"
+    }
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/spec",
+      "<rootDir>/src"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.js"
+    ],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!lodash-es)"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "commonjs": true,
+      "es6": true,
+      "node": true,
+      "jest": true
+    },
+    "extends": "eslint:recommended",
+    "plugins": [
+      "jest"
+    ],
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018
+    },
+    "rules": {
+      "indent": [
+        "error",
+        2
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "max-len": "off",
+      "no-undef": "off",
+      "no-unused-vars": "off"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx}": [
+      "npm run format",
+      "npm run lint:fix",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "endOfLine": "lf"
+  }
+}
