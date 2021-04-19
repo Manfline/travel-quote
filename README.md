@@ -30,7 +30,7 @@ Response
 }
 
 POST /quote
-Response
+Body
 {
   from: 'BRC',
   to: 'BA',
