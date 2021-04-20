@@ -25,7 +25,7 @@ Request
 GET /quote/GRU/SCL
 Response
 {
-  route: 'GRU,BRC,SCL&quot',
+  route: 'GRU,BRC,SCL',
   price: 15
 }
 
@@ -35,5 +35,9 @@ Body
   from: 'BRC',
   to: 'BA',
   price: 15
+}
+Response
+{ 
+  message: 'Rota adicionada com sucesso'
 }
 ```
